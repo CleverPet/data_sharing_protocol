@@ -1,0 +1,26 @@
+{
+    "id": "cleverpet.98",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T10:57:55.445000",
+    "end": "2021-11-21T10:58:55.495000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T10:58:19.311667",
+            "end": "2021-11-21T10:58:19.811667",
+            "content": "beach/ball"
+        }
+    ]
+}
