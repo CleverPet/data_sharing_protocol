@@ -169,20 +169,18 @@ One could imagine representing behaviors defined in an ethogram in such a schema
 
 First let us look at the most popular buttons:
 
-![Button Count](button_count.png){ width=250px }
+![Button Count](button_count.png)
 
 Unsurprisingly, most of these buttons are the kinds used to make requests.
 
 
 Second let us look at the hours in which button presses tend to occur:
 
-![Button Presses By Hour](press_by_hour.png){ width=250px }
+![Button Presses By Hour](press_by_hour.png)
 
 Third, let us take a look at the gaps between turns in AAC interactions. This kind of analysis is interesting as it allows us to assess whether interactions between canines and humans display any of the regulatory structures found in human-human conversation.
 
-![gap time](gaps.png){ width=250px }
-
-\newpage
+![gap time](gaps.png)
 
 ### Converting to tabular data
 
