@@ -1,4 +1,4 @@
-# Cleverpet Eventstream Documentation
+# FluentPet Eventstream Documentation
 
 As technology is increasingly used to observe and interact with animals, we are excited about the insights researchers and hobbyists might gain through analyzing such data.
 
