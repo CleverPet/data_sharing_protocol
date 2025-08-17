@@ -1,0 +1,26 @@
+{
+    "id": "cleverpet.35",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T13:36:23.372000",
+    "end": "2021-11-21T13:37:23.422000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T13:36:44.238667",
+            "end": "2021-11-21T13:36:44.738667",
+            "content": "Otter"
+        }
+    ]
+}

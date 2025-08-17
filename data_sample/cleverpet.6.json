@@ -1,0 +1,26 @@
+{
+    "id": "cleverpet.6",
+    "provenance": "cleverpet",
+    "start": "2021-09-10T10:22:21.456000",
+    "end": "2021-09-10T10:23:21.506000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-09-10T10:22:48.422667",
+            "end": "2021-09-10T10:22:48.922667",
+            "content": "accidental? sounds like a button press but no audio"
+        }
+    ]
+}

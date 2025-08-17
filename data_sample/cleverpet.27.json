@@ -1,0 +1,34 @@
+{
+    "id": "cleverpet.27",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T13:30:53.667000",
+    "end": "2021-11-21T13:31:53.717000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T13:30:58.167000",
+            "end": "2021-11-21T13:30:58.667000",
+            "content": "sounds like otter"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T13:31:28.767000",
+            "end": "2021-11-21T13:31:29.267000",
+            "content": "bird"
+        }
+    ]
+}

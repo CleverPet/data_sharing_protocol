@@ -1,0 +1,66 @@
+{
+    "id": "cleverpet.94",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T10:30:43.745000",
+    "end": "2021-11-21T10:31:43.795000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T10:30:46.111667",
+            "end": "2021-11-21T10:30:46.611667",
+            "content": "*OTHER/UNCLEAR"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T10:30:58.411667",
+            "end": "2021-11-21T10:30:58.911667",
+            "content": "morning"
+        },
+        {
+            "id": "cleverpet.0.2",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T10:30:59.811667",
+            "end": "2021-11-21T10:31:00.311667",
+            "content": "all done"
+        },
+        {
+            "id": "cleverpet.0.3",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T10:31:00.611667",
+            "end": "2021-11-21T10:31:01.111667",
+            "content": "happy"
+        },
+        {
+            "id": "cleverpet.0.4",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T10:31:16.611667",
+            "end": "2021-11-21T10:31:17.111667",
+            "content": "afternoon"
+        },
+        {
+            "id": "cleverpet.0.5",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T10:31:17.011667",
+            "end": "2021-11-21T10:31:17.511667",
+            "content": "yesterday"
+        }
+    ]
+}

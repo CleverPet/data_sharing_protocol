@@ -1,0 +1,26 @@
+{
+    "id": "cleverpet.47",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T12:46:26.551000",
+    "end": "2021-11-21T12:47:26.601000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T12:46:27.117667",
+            "end": "2021-11-21T12:46:27.617667",
+            "content": "dog"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "id": "cleverpet.14",
+    "provenance": "cleverpet",
+    "start": "2021-09-10T09:34:01.541000",
+    "end": "2021-09-10T09:35:01.591000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-09-10T09:34:07.907667",
+            "end": "2021-09-10T09:34:08.407667",
+            "content": "\"water\" or \"otter\""
+        }
+    ]
+}

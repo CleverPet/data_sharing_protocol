@@ -1,0 +1,26 @@
+{
+    "id": "cleverpet.33",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T13:28:34.625000",
+    "end": "2021-11-21T13:29:34.675000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T13:29:14.491667",
+            "end": "2021-11-21T13:29:14.991667",
+            "content": "cuts off as soon as bunny hits button"
+        }
+    ]
+}

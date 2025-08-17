@@ -1,0 +1,42 @@
+{
+    "id": "cleverpet.63",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T12:06:25.103000",
+    "end": "2021-11-21T12:07:25.153000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T12:06:56.436333",
+            "end": "2021-11-21T12:06:56.936333",
+            "content": "what"
+        },
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T12:06:57.669667",
+            "end": "2021-11-21T12:06:58.169667",
+            "content": "feel"
+        },
+        {
+            "id": "cleverpet.0.2",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T12:06:58.369667",
+            "end": "2021-11-21T12:06:58.869667",
+            "content": "??? hmmm"
+        }
+    ]
+}

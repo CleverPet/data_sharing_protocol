@@ -1,0 +1,66 @@
+{
+    "id": "cleverpet.76",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T11:47:21.897000",
+    "end": "2021-11-21T11:48:21.947000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:47:22.297000",
+            "end": "2021-11-21T11:47:22.797000",
+            "content": "*OTHER/UNCLEAR"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:47:30.297000",
+            "end": "2021-11-21T11:47:30.797000",
+            "content": "null"
+        },
+        {
+            "id": "cleverpet.0.2",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:47:31.563667",
+            "end": "2021-11-21T11:47:32.063667",
+            "content": "belly"
+        },
+        {
+            "id": "cleverpet.0.3",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:47:32.897000",
+            "end": "2021-11-21T11:47:33.397000",
+            "content": "outside"
+        },
+        {
+            "id": "cleverpet.0.4",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:47:53.597000",
+            "end": "2021-11-21T11:47:54.097000",
+            "content": ""
+        },
+        {
+            "id": "cleverpet.0.5",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:47:54.663667",
+            "end": "2021-11-21T11:47:55.163667",
+            "content": "null"
+        }
+    ]
+}

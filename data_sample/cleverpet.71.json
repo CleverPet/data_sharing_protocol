@@ -1,0 +1,58 @@
+{
+    "id": "cleverpet.71",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T11:45:38.147000",
+    "end": "2021-11-21T11:46:38.197000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.2",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:45:45.880333",
+            "end": "2021-11-21T11:45:46.380333",
+            "content": "rain"
+        },
+        {
+            "id": "cleverpet.0.3",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:45:46.413667",
+            "end": "2021-11-21T11:45:46.913667",
+            "content": "beach"
+        },
+        {
+            "id": "cleverpet.0.4",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:45:47.113667",
+            "end": "2021-11-21T11:45:47.613667",
+            "content": "walk"
+        },
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:46:07.113667",
+            "end": "2021-11-21T11:46:07.613667",
+            "content": "*OTHER/UNCLEAR"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T11:46:08.380333",
+            "end": "2021-11-21T11:46:08.880333",
+            "content": "*OTHER/UNCLEAR"
+        }
+    ]
+}

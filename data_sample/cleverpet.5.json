@@ -1,0 +1,34 @@
+{
+    "id": "cleverpet.5",
+    "provenance": "cleverpet",
+    "start": "2021-09-10T09:38:37.940000",
+    "end": "2021-09-10T09:39:37.990000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-09-10T09:39:03.606667",
+            "end": "2021-09-10T09:39:04.106667",
+            "content": "hug or tug"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-09-10T09:39:16.273333",
+            "end": "2021-09-10T09:39:16.773333",
+            "content": "otter?"
+        }
+    ]
+}

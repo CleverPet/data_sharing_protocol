@@ -1,0 +1,26 @@
+{
+    "id": "cleverpet.55",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T13:15:38.029000",
+    "end": "2021-11-21T13:16:38.079000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-11-21T13:16:01.295667",
+            "end": "2021-11-21T13:16:01.795667",
+            "content": "OTTER'S BOARD"
+        }
+    ]
+}

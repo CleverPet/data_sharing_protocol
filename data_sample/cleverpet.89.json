@@ -1,0 +1,74 @@
+{
+    "id": "cleverpet.89",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T11:17:19.799000",
+    "end": "2021-11-21T11:18:19.849000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.0",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.0",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:17:31.865667",
+            "end": "2021-11-21T11:17:32.365667",
+            "content": "we"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:17:32.832333",
+            "end": "2021-11-21T11:17:33.332333",
+            "content": "talk"
+        },
+        {
+            "id": "cleverpet.0.2",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:17:33.565667",
+            "end": "2021-11-21T11:17:34.065667",
+            "content": "now"
+        },
+        {
+            "id": "cleverpet.0.3",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:17:39.832333",
+            "end": "2021-11-21T11:17:40.332333",
+            "content": "*OTHER/UNCLEAR"
+        },
+        {
+            "id": "cleverpet.0.4",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:17:41.465667",
+            "end": "2021-11-21T11:17:41.965667",
+            "content": "*OTHER/UNCLEAR"
+        },
+        {
+            "id": "cleverpet.0.5",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:17:42.165667",
+            "end": "2021-11-21T11:17:42.665667",
+            "content": "dream"
+        },
+        {
+            "id": "cleverpet.0.6",
+            "type": "button_press",
+            "agent": "cleverpet.human.0",
+            "start": "2021-11-21T11:17:44.332333",
+            "end": "2021-11-21T11:17:44.832333",
+            "content": "*OTHER/UNCLEAR"
+        }
+    ]
+}
