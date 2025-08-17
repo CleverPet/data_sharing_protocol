@@ -1,0 +1,66 @@
+{
+    "id": "cleverpet.12",
+    "provenance": "cleverpet",
+    "start": "2021-05-09T16:55:20.000000",
+    "end": "2021-05-09T16:56:02.400000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.12",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.12",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.12.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.12",
+            "start": "2021-05-09T16:55:25.933333",
+            "end": "2021-05-09T16:55:26.433333",
+            "content": "WATER"
+        },
+        {
+            "id": "cleverpet.0.2",
+            "type": "utterance",
+            "agent": "cleverpet.human.12",
+            "start": "2021-05-09T16:55:27.100000",
+            "end": "2021-05-09T16:55:27.466667",
+            "content": "You want water?"
+        },
+        {
+            "id": "cleverpet.0.3",
+            "type": "utterance",
+            "agent": "cleverpet.human.12",
+            "start": "2021-05-09T16:55:31.366667",
+            "end": "2021-05-09T16:55:31.566667",
+            "content": "Water?"
+        },
+        {
+            "id": "cleverpet.0.4",
+            "type": "utterance",
+            "agent": "cleverpet.human.12",
+            "start": "2021-05-09T16:55:32.466667",
+            "end": "2021-05-09T16:55:32.733333",
+            "content": "You thirsty?"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "button_press",
+            "agent": "cleverpet.human.12",
+            "start": "2021-05-09T16:55:38.233333",
+            "end": "2021-05-09T16:55:38.733333",
+            "content": "WATER"
+        },
+        {
+            "id": "cleverpet.0.5",
+            "type": "utterance",
+            "agent": "cleverpet.human.12",
+            "start": "2021-05-09T16:55:38.866667",
+            "end": "2021-05-09T16:55:39.100000",
+            "content": "Water"
+        }
+    ]
+}

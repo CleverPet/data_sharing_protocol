@@ -1,0 +1,61 @@
+{
+    "id": "cleverpet.0",
+    "provenance": "cleverpet",
+    "start": "2021-10-11T05:52:36.0123000",
+    "end": "2021-10-11T05:52:42.0123000",
+    "agents": [
+        {"id": "cleverpet.dog.0", "species": "canis familiaris"},
+        {"id": "cleverpet.human.0", "species": "homo sapiens"}
+    ],
+    "events": [
+        {
+            "id": "cleverpet.0.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-10-11T05:52:36.0123000",
+            "end": "2021-10-11T05:52:37.0123000",
+            "content": "outside"
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "vocalization",
+            "agent": "cleverpet.dog.0",
+            "start": "2021-10-11T05:52:38.0123000",
+            "end": "2021-10-11T05:52:39.0123000",
+            "content": "<BARK>"
+        },
+        {
+            "id": "cleverpet.0.2",
+            "type": "utterance",
+            "agent": "cleverpet.human.0",
+            "start": "2021-10-11T05:52:40.0123000",
+            "end": "2021-10-11T05:52:42.0123000",
+            "content": "no outside",
+            "other_data": {
+                "content_tokens": [
+                    {
+                        "token": "no",
+                        "start": "2021-10-11T05:52:40.0123000",
+                        "end": "2021-10-11T05:52:41.0123000"
+                    },
+                    {
+                        "token": "outside",
+                        "start": "2021-10-11T05:52:41.0123000",
+                        "end": "2021-10-11T05:52:42.0123000"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "cleverpet.0.1",
+            "type": "interaction",
+            "agent": "cleverpet.human.0",
+            "start": "2021-10-11T05:52:42.0123000",
+            "end": "2021-10-11T05:52:45.0123000",
+            "content": "<PET>",
+            "patients": [
+                "cleverpet.dog.0"
+            ]
+        }
+    ]
+}
