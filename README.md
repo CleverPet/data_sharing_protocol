@@ -12,14 +12,14 @@ We designed this format with the following desiderata
 1. **human readable** researchers, hobbyists, and data producers ought to be able to understand and inspect the data
 1. **easy to analyze** the format ought to be easy to analyze
 
-We achieve extensibility by using a sequence of `Event`s as our primary data structure. An `Event` is defined only as a type of occurrance at a point in time. It may be extended to incorporate extra data, e.g., parsed tokens of a human vocalization or behaviors in an ethogram.
+We achieve extensibility by using a sequence of `Event`s as our primary data structure. An `Event` is defined only as a type of occurrence at a point in time. It may be extended to incorporate extra data, e.g., parsed tokens of a human vocalization or behaviors in an ethogram.
 
 When possible we use human readable ids and timestamps.
 
-While tabular data is easier to analyze than nested `json` data due to the ubiquity of speadsheet and dataframe tools, our data format can be transformed into a tabular format for analysis *but* without sacrificying extensibility.
+While tabular data is easier to analyze than nested `json` data due to the ubiquity of spreadsheet and dataframe tools, our data format can be transformed into a tabular format for analysis *but* without sacrificing extensibility.
 
 
-## Evenstream Format
+## Eventstream Format
 
 The core data file is a json eventstream.
 
@@ -33,11 +33,11 @@ The core data file is a json eventstream.
     "events": [<Event>]
 }
 ```
-A `provenance` is a data producer, e.g., a company like Cleverpet would have a provenance id like `"cleverpet"`.
+A `provenance` is a data producer, e.g., a company like CleverPet/FluentPet would have a provenance id like `"cleverpet"`.
 
-Each eventstream file has a provenance scoped `id` like `cleverpet.100`.
+Each eventstream file has a provenance-scoped `id` like `cleverpet.100`.
 
-Each evenstream file has a `start` and `end`. All timestamps in these files should be `ISO 8601` formatted.
+Each eventstream file has a `start` and `end`. All timestamps in these files should be `ISO 8601` formatted.
 
 Each eventstream may have a list of agents, who may generate events.
 
@@ -47,14 +47,14 @@ An agent object contains the following
 
 ```json
 {
-    "id": string, # provenance scoped id
+    "id": string, # provenance-scoped id
     "species": string # species name
 }
 ```
 
-An agent has a provenance scoped `id` like the following `"cleverpet.dog.100"` which includes a short-form name for readability. This prevents collisions between two data producers; it also affords some human readability.
+An agent has a provenance-scoped `id` like the following `"cleverpet.dog.100"` which includes a short-form name for readability. This prevents collisions between two data producers; it also affords some human readability.
 
-`Species` is species name of the agent in binomial nomenclature, e.g., `"canis familiaris"`.
+`Species` is the species name of the agent in binomial nomenclature, e.g., `"canis familiaris"`.
 
 ### Event
 
@@ -72,9 +72,9 @@ Events are extendable objects which may represent agent actions.
 }
 ```
 
-Events are designed flexibly represent events in time. These may be actions caused by an agent or they may be agentless occurrences. Events may span time or may be moments in time.
+Events are designed to flexibly represent events in time. These may be actions caused by an agent or they may be agentless occurrences. Events may span time or may be moments in time.
 
-As is relevant to Cleverpet, button presses can be easily represented in this structure: agents cause a `button_press` type event and the button label is stored in `content`. Human utterances may also be represented. Here we would use a `vocalization` type and store the transcript in `content`. Inside `other_data`, one could store the tokenized output of the uttereance after it has passed through an NLP pipeline, e.g.,
+As is relevant to CleverPet, button presses can be easily represented in this structure: agents cause a `button_press` type event and the button label is stored in `content`. Human utterances may also be represented. Here we would use a `vocalization` type and store the transcript in `content`. Inside `other_data`, one could store the tokenized output of the utterance after it has passed through an NLP pipeline, e.g.,
 
 ```json
         {
@@ -167,14 +167,14 @@ One could imagine representing behaviors defined in an ethogram in such a schema
 
 ## Analysis
 
-First let us look at the most popular buttons:
+First, let us look at the most popular buttons:
 
 ![Button Count](button_count.png)
 
 Unsurprisingly, most of these buttons are the kinds used to make requests.
 
 
-Second let us look at the hours in which button presses tend to occur:
+Second, let us look at the hours in which button presses tend to occur:
 
 ![Button Presses By Hour](press_by_hour.png)
 
