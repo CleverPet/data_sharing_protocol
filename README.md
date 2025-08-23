@@ -8,9 +8,9 @@ This document outlines a json format for storing event streams of interspecies A
 
 We designed this format with the following desiderata
 
-1. **extensible** this format ought to capture behaviors from multiple species and interactional contexts
-1. **human readable** researchers, hobbyists, and data producers ought to be able to understand and inspect the data
-1. **easy to analyze** the format ought to be easy to analyze
+1. **extensible**: this format ought to capture behaviors from multiple species and interactional contexts
+1. **human readable**: researchers, hobbyists, and data producers ought to be able to understand and inspect the data
+1. **easy to analyze**: the format ought to minimize processing required for data analysis
 
 We achieve extensibility by using a sequence of `Event`s as our primary data structure. An `Event` is defined only as a type of occurrence at a point in time. It may be extended to incorporate extra data, e.g., parsed tokens of a human vocalization or behaviors in an ethogram.
 
