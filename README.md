@@ -2,7 +2,7 @@
 
 As technology is increasingly used to observe and interact with animals, we are excited about the insights researchers and hobbyists might gain through analyzing such data.
 
-This document outlines a json format for storing evenstreams of interspecies AAC device interactions and provides some example data analyses using data stored in this manner.
+This document outlines a json format for storing event streams of interspecies AAC device interactions and provides some example data analyses using data stored in this manner.
 
 ## Desiderata
 
