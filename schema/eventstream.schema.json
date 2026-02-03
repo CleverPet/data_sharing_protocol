@@ -10,7 +10,7 @@
         "schema_version": {
             "type": "string",
             "description": "Schema version in semver format.",
-            "default": "1.2.0"
+            "default": "0.2.0"
         },
         "id": {
             "type": "string",

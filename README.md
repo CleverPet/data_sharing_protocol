@@ -1,5 +1,7 @@
 # FluentPet Eventstream Documentation
 
+> **Status: Draft** — This schema is under active development and has not yet been deployed. Feedback welcome.
+
 As technology is increasingly used to observe and interact with animals, we are excited about the insights researchers and hobbyists might gain through analyzing such data.
 
 This document outlines a json format for storing event streams of interspecies AIC device interactions and provides some example data analyses using data stored in this manner.
@@ -25,7 +27,7 @@ The core data file is a json eventstream.
 
 ```json
 {
-    "schema_version": "1.0.0",
+    "schema_version": "0.1.0",
     "id": string, # id of file
     "provenance": string, # id of data producer
     "start": timestamp, # start of stream
@@ -125,7 +127,7 @@ If omitted, assume all agents in the eventstream. Items can be strings or object
 
 ```json
 {
-    "schema_version": "1.0.0",
+    "schema_version": "0.1.0",
     "id": "cleverpet.75",
     "provenance": "cleverpet",
     "start": "2021-11-21T18:30:35.911000",
@@ -187,7 +189,7 @@ If omitted, assume all agents in the eventstream. Items can be strings or object
 
 ## Measurements
 
-Version 1.2.0 introduces **measurements** as a modality-agnostic way to attach numeric data to events. Rather than hard-coding fields for a single modality (e.g., acoustic frequencies), the `measurements` array lets any event carry structured numeric observations — from bioacoustic spectral features, to waggle dance angles, to ethogram motion metrics.
+Version 0.2.0 introduces **measurements** as a modality-agnostic way to attach numeric data to events. Rather than hard-coding fields for a single modality (e.g., acoustic frequencies), the `measurements` array lets any event carry structured numeric observations — from bioacoustic spectral features, to waggle dance angles, to ethogram motion metrics.
 
 ### Core Fields
 
@@ -317,7 +319,7 @@ The `Location` object allows additional properties, so domain-specific fields ca
 
 ```json
 {
-    "schema_version": "1.3.0",
+    "schema_version": "0.3.0",
     "id": "survey.transect.1",
     "provenance": "marine_lab",
     "start": "2024-07-15T09:20:00.000000",
