@@ -1,0 +1,233 @@
+{
+    "schema_version": "1.1.0",
+    "id": "sarasota.session.2024-07-15",
+    "provenance": "sarasota",
+    "start": "2024-07-15T09:20:00.000000",
+    "end": "2024-07-15T09:35:00.000000",
+    "agents": [
+        {
+            "id": "sarasota.dolphin.FB185",
+            "species": "tursiops truncatus",
+            "metadata": {
+                "name": "FB185",
+                "sex": "female",
+                "age_class": "adult",
+                "first_identified": "2012-05-20"
+            },
+            "communication_profile": {
+                "hearing_range_hz": [150, 160000],
+                "vocalization_range_hz": [800, 130000],
+                "primary_modalities": ["acoustic", "ultrasonic"],
+                "description": "Adult female bottlenose dolphin with well-documented signature whistle."
+            }
+        },
+        {
+            "id": "sarasota.dolphin.FB294",
+            "species": "tursiops truncatus",
+            "metadata": {
+                "name": "FB294",
+                "sex": "male",
+                "age_class": "juvenile",
+                "first_identified": "2020-08-11"
+            },
+            "communication_profile": {
+                "hearing_range_hz": [150, 160000],
+                "vocalization_range_hz": [1000, 130000],
+                "primary_modalities": ["acoustic", "ultrasonic"],
+                "description": "Juvenile male bottlenose dolphin, calf of FB185."
+            }
+        }
+    ],
+    "events": [
+        {
+            "id": "sarasota.ev.0",
+            "type": "session_start",
+            "start": "2024-07-15T09:20:00.000000",
+            "content": "Hydrophone deployment at Sarasota Bay channel marker 4",
+            "context": {
+                "location": "Sarasota Bay, FL",
+                "latitude": 27.3364,
+                "longitude": -82.5431,
+                "water_depth_m": 3.2,
+                "water_temp_c": 29.1
+            },
+            "recording": {
+                "source": "hydrophone",
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "format": "wav"
+            }
+        },
+        {
+            "id": "sarasota.ev.1",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:23:14.337000",
+            "end": "2024-07-15T09:23:15.021000",
+            "content": "signature_whistle",
+            "duration_ms": 684,
+            "signal": {
+                "freq_min_hz": 5200,
+                "freq_max_hz": 14800,
+                "dominant_freq_hz": 8900,
+                "bandwidth_hz": 9600,
+                "call_type": "signature_whistle",
+                "modality": "acoustic",
+                "contour_points": [
+                    [0, 5200],
+                    [100, 7800],
+                    [200, 11300],
+                    [350, 14800],
+                    [500, 12100],
+                    [684, 8900]
+                ]
+            },
+            "recording": {
+                "source": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 18524160,
+                "format": "wav"
+            },
+            "classification": {
+                "method": "template_matching",
+                "label": "FB185_signature",
+                "confidence": 0.92,
+                "model_version": "whistle_id_v3.1",
+                "taxonomy": "sarasota_whistle_catalog_2024"
+            }
+        },
+        {
+            "id": "sarasota.ev.2",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB294",
+            "start": "2024-07-15T09:23:16.100000",
+            "end": "2024-07-15T09:23:16.780000",
+            "content": "signature_whistle",
+            "duration_ms": 680,
+            "signal": {
+                "freq_min_hz": 6100,
+                "freq_max_hz": 15200,
+                "dominant_freq_hz": 10200,
+                "bandwidth_hz": 9100,
+                "call_type": "signature_whistle",
+                "modality": "acoustic",
+                "contour_points": [
+                    [0, 6100],
+                    [120, 9400],
+                    [280, 15200],
+                    [450, 13000],
+                    [680, 10200]
+                ]
+            },
+            "recording": {
+                "source": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 18693600,
+                "format": "wav"
+            },
+            "classification": {
+                "method": "template_matching",
+                "label": "FB294_signature",
+                "confidence": 0.87,
+                "model_version": "whistle_id_v3.1",
+                "taxonomy": "sarasota_whistle_catalog_2024"
+            }
+        },
+        {
+            "id": "sarasota.ev.3",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:25:02.450000",
+            "end": "2024-07-15T09:25:02.451200",
+            "content": "echolocation_click",
+            "duration_ms": 0.12,
+            "signal": {
+                "freq_min_hz": 20000,
+                "freq_max_hz": 130000,
+                "dominant_freq_hz": 95000,
+                "bandwidth_hz": 110000,
+                "call_type": "echolocation_click",
+                "modality": "ultrasonic"
+            },
+            "recording": {
+                "source": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 28803552,
+                "format": "wav"
+            },
+            "classification": {
+                "method": "cnn",
+                "label": "echolocation_regular",
+                "confidence": 0.98,
+                "model_version": "click_classifier_v2.0",
+                "taxonomy": "au_2000_click_types"
+            }
+        },
+        {
+            "id": "sarasota.ev.4",
+            "type": "click_train",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:25:02.450000",
+            "end": "2024-07-15T09:25:03.890000",
+            "content": "echolocation_click_train",
+            "duration_ms": 1440,
+            "signal": {
+                "freq_min_hz": 20000,
+                "freq_max_hz": 130000,
+                "call_type": "click_train",
+                "modality": "ultrasonic"
+            },
+            "other_data": {
+                "click_count": 48,
+                "mean_ici_ms": 30.0
+            }
+        },
+        {
+            "id": "sarasota.ev.3",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:25:02.450000",
+            "parent_id": "sarasota.ev.4",
+            "content": "echolocation_click",
+            "duration_ms": 0.12
+        },
+        {
+            "id": "sarasota.ev.5",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB294",
+            "start": "2024-07-15T09:28:44.200000",
+            "end": "2024-07-15T09:28:45.750000",
+            "content": "burst_pulse",
+            "duration_ms": 1550,
+            "signal": {
+                "freq_min_hz": 2000,
+                "freq_max_hz": 80000,
+                "dominant_freq_hz": 25000,
+                "bandwidth_hz": 78000,
+                "call_type": "burst_pulse",
+                "modality": "acoustic"
+            },
+            "recording": {
+                "source": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 50467200,
+                "format": "wav"
+            },
+            "classification": {
+                "method": "cnn",
+                "label": "social_burst_pulse",
+                "confidence": 0.78,
+                "model_version": "click_classifier_v2.0",
+                "taxonomy": "au_2000_click_types"
+            }
+        }
+    ]
+}

@@ -167,6 +167,103 @@ One could imagine representing behaviors defined in an ethogram in such a schema
 }
 ```
 
+## Signal-Level Data
+
+Version 1.1.0 elevates acoustic and signal-level data to first-class status in the schema. While button presses remain fully supported, the reality is that acoustic, electric, and chemical signaling is how the vast majority of species on Earth actually communicate. The core protocol now models these communication events natively rather than relegating them to extensions.
+
+### First-Class Signal Fields
+
+Events may now include the following optional top-level fields:
+
+- **`signal`**: Spectral and signal-type metadata (frequency range, dominant frequency, bandwidth, call type, frequency contour points, modality)
+- **`recording`**: Links to raw sensor data (source device, channel, sample rate, file reference, sample offset, format)
+- **`classification`**: Automated or manual classification results (method, label, confidence, model version, taxonomy reference)
+- **`duration_ms`**: Duration in milliseconds with sub-millisecond precision for fast signals like bat echolocation clicks
+- **`parent_id`**: Links events hierarchically (e.g., a whale song contains themes, which contain phrases, which contain units)
+
+Agents may also include a **`communication_profile`** describing their hearing range, vocalization range, primary modalities, and a free-text description.
+
+### Example: Dolphin Signature Whistle
+
+```json
+{
+    "id": "sarasota.sw.0",
+    "type": "vocalization",
+    "agent": "sarasota.dolphin.FB185",
+    "start": "2024-07-15T09:23:14.337000",
+    "end": "2024-07-15T09:23:15.021000",
+    "content": "signature_whistle",
+    "duration_ms": 684,
+    "signal": {
+        "freq_min_hz": 5200,
+        "freq_max_hz": 14800,
+        "dominant_freq_hz": 8900,
+        "bandwidth_hz": 9600,
+        "call_type": "signature_whistle",
+        "modality": "acoustic",
+        "contour_points": [
+            [0, 5200], [100, 7800], [200, 11300],
+            [350, 14800], [500, 12100], [684, 8900]
+        ]
+    },
+    "recording": {
+        "source": "hydrophone",
+        "channel": 0,
+        "sample_rate_hz": 96000,
+        "file": "sarasota_2024-07-15_ch0.wav",
+        "offset_samples": 4480128,
+        "format": "wav"
+    },
+    "classification": {
+        "method": "template_matching",
+        "label": "FB185_signature",
+        "confidence": 0.92,
+        "model_version": "whistle_id_v3.1",
+        "taxonomy": "sarasota_whistle_catalog_2024"
+    }
+}
+```
+
+### Example: Hierarchical Whale Song Events
+
+Whale songs have a natural hierarchy: song → theme → phrase → unit. The `parent_id` field captures this:
+
+```json
+[
+    {
+        "id": "hawaii.song.0",
+        "type": "song",
+        "agent": "hawaii.humpback.MN2401",
+        "start": "2024-02-10T06:15:00.000000",
+        "duration_ms": 480000,
+        "content": "song_session"
+    },
+    {
+        "id": "hawaii.theme.0",
+        "type": "theme",
+        "agent": "hawaii.humpback.MN2401",
+        "start": "2024-02-10T06:15:00.000000",
+        "parent_id": "hawaii.song.0",
+        "duration_ms": 120000,
+        "content": "theme_A"
+    },
+    {
+        "id": "hawaii.phrase.0",
+        "type": "phrase",
+        "agent": "hawaii.humpback.MN2401",
+        "start": "2024-02-10T06:15:00.000000",
+        "parent_id": "hawaii.theme.0",
+        "duration_ms": 15000,
+        "content": "phrase_A1",
+        "signal": {
+            "freq_min_hz": 80,
+            "freq_max_hz": 4000,
+            "modality": "acoustic"
+        }
+    }
+]
+```
+
 ## Analysis
 
 First, let us look at the most popular buttons:
