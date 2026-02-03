@@ -272,6 +272,62 @@ Agents may also include a **`communication_profile`** describing their hearing r
 }
 ```
 
+## Geographic Location
+
+Version 1.3.0 adds a two-level **location** model for recording where data was collected.
+
+- **Eventstream-level `location`**: Describes the study site — set once for the whole file. Use this for fixed-position studies (e.g., a research apiary, a home, a field station).
+- **Event-level `location`**: Optional per-event override for mobile data collection where the recording position changes (e.g., a boat-based hydrophone survey, a drone transect).
+
+Both levels use the same `Location` object. The only required field is `coordinates`, which follows **GeoJSON order: `[longitude, latitude]`** or `[longitude, latitude, elevation]`. The default geodetic datum is **WGS84**.
+
+### Location Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `coordinates` | `[number, ...]` | yes | `[lon, lat]` or `[lon, lat, elevation]` (GeoJSON order) |
+| `datum` | string | no | Geodetic datum (default `WGS84`) |
+| `elevation_m` | number | no | Elevation in meters (negative for underwater) |
+| `site_name` | string | no | Human-readable site name |
+| `habitat` | string | no | Habitat type (e.g., pelagic, forest, agricultural, urban) |
+| `country` | string | no | ISO 3166-1 country code or name |
+| `region` | string | no | Sub-national region or state |
+
+The `Location` object allows additional properties, so domain-specific fields can be added freely. Habitat vocabularies can be standardized via community extensions — see [EXTENSIONS.md](EXTENSIONS.md).
+
+### Example
+
+```json
+{
+    "schema_version": "1.3.0",
+    "id": "survey.transect.1",
+    "provenance": "marine_lab",
+    "start": "2024-07-15T09:20:00.000000",
+    "end": "2024-07-15T09:35:00.000000",
+    "location": {
+        "coordinates": [-156.83, 20.78],
+        "elevation_m": -50,
+        "site_name": "Auau Channel, Maui",
+        "habitat": "pelagic",
+        "country": "US",
+        "region": "Hawaii"
+    },
+    "agents": [],
+    "events": [
+        {
+            "id": "ev.1",
+            "type": "vocalization",
+            "start": "2024-07-15T09:23:14.337000",
+            "content": "signature_whistle",
+            "location": {
+                "coordinates": [-156.831, 20.781],
+                "elevation_m": -8
+            }
+        }
+    ]
+}
+```
+
 ## Analysis
 
 First, let us look at the most popular buttons:

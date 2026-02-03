@@ -4,6 +4,13 @@
     "provenance": "cleverpet",
     "start": "2024-09-10T14:00:00.000000",
     "end": "2024-09-10T14:05:00.000000",
+    "location": {
+        "coordinates": [-122.6765, 45.5231],
+        "site_name": "Home observation, Portland",
+        "habitat": "urban",
+        "country": "US",
+        "region": "Oregon"
+    },
     "agents": [
         {
             "id": "cleverpet.dog.200",

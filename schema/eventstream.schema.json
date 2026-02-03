@@ -39,9 +39,53 @@
             "type": "array",
             "description": "List of events in this eventstream.",
             "items": { "$ref": "#/$defs/Event" }
+        },
+        "location": {
+            "$ref": "#/$defs/Location",
+            "description": "Geographic location of the study site."
         }
     },
     "$defs": {
+        "Location": {
+            "type": "object",
+            "description": "Geographic location with GeoJSON-ordered coordinates.",
+            "required": ["coordinates"],
+            "additionalProperties": true,
+            "properties": {
+                "coordinates": {
+                    "type": "array",
+                    "description": "Position as [longitude, latitude] or [longitude, latitude, elevation] in GeoJSON order.",
+                    "items": { "type": "number" },
+                    "minItems": 2,
+                    "maxItems": 3
+                },
+                "datum": {
+                    "type": "string",
+                    "description": "Geodetic datum (default WGS84).",
+                    "default": "WGS84"
+                },
+                "elevation_m": {
+                    "type": "number",
+                    "description": "Elevation in meters (negative for underwater)."
+                },
+                "site_name": {
+                    "type": "string",
+                    "description": "Human-readable name of the site."
+                },
+                "habitat": {
+                    "type": "string",
+                    "description": "Habitat type (e.g., pelagic, forest, agricultural, urban)."
+                },
+                "country": {
+                    "type": "string",
+                    "description": "ISO 3166-1 country code or name."
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Sub-national region or state."
+                }
+            }
+        },
         "Agent": {
             "type": "object",
             "description": "An agent who may generate events.",
@@ -287,6 +331,10 @@
                             "description": "File format (e.g., wav, flac, mp4)."
                         }
                     }
+                },
+                "location": {
+                    "$ref": "#/$defs/Location",
+                    "description": "Geographic location for this event (for mobile data collection)."
                 },
                 "spatial": {
                     "$ref": "#/$defs/Spatial"

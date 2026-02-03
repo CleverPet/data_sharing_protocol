@@ -4,6 +4,13 @@
     "provenance": "sussex",
     "start": "2024-08-03T11:00:00.000000",
     "end": "2024-08-03T11:05:00.000000",
+    "location": {
+        "coordinates": [-0.1313, 50.8225],
+        "site_name": "University of Sussex Research Apiary",
+        "habitat": "agricultural",
+        "country": "GB",
+        "region": "East Sussex"
+    },
     "agents": [
         {
             "id": "sussex.bee.W42",

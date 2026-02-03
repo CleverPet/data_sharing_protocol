@@ -4,6 +4,14 @@
     "provenance": "sarasota",
     "start": "2024-07-15T09:20:00.000000",
     "end": "2024-07-15T09:35:00.000000",
+    "location": {
+        "coordinates": [-156.83, 20.78],
+        "elevation_m": -50,
+        "site_name": "Auau Channel, Maui",
+        "habitat": "pelagic",
+        "country": "US",
+        "region": "Hawaii"
+    },
     "agents": [
         {
             "id": "sarasota.dolphin.FB185",
@@ -81,6 +89,10 @@
                 "file": "sarasota_2024-07-15_bay.wav",
                 "offset_samples": 18524160,
                 "format": "wav"
+            },
+            "location": {
+                "coordinates": [-156.831, 20.781],
+                "elevation_m": -8
             },
             "classification": {
                 "method": "template_matching",
@@ -198,6 +210,10 @@
                 "file": "sarasota_2024-07-15_bay.wav",
                 "offset_samples": 50467200,
                 "format": "wav"
+            },
+            "location": {
+                "coordinates": [-156.834, 20.779],
+                "elevation_m": -8
             },
             "classification": {
                 "method": "cnn",
