@@ -65,7 +65,8 @@ Events are extendable objects which may represent agent actions.
 {
     "id": string, # file scoped id
     "type": string, # event type
-    "agent": string, # (optional) agent id
+    "agent": string, # (optional) agent id who produced the event
+    "present": [string | object], # (optional) agents present — see below
     "start": timestamp, # start of event
     "end": timestamp, # (optional)
     "content": string, # event content
@@ -102,6 +103,31 @@ As is relevant to CleverPet, button presses can be easily represented in this st
 ```
 
 One could imagine representing behaviors defined in an ethogram in such a schema, perhaps disambiguating between 'overloaded' ethograms using scoped `type`s, e.g., `cleverpet.evenson_ethogram.lip_licking`.
+
+#### Co-presence
+
+Communication typically involves more than one agent. The optional `present` field captures which agents were co-present when an event occurred. If omitted, assume all agents in the eventstream were present.
+
+Items in `present` can be simple agent ids (strings) or objects with additional details:
+
+```json
+// Simple — just who's there
+"present": ["dog.75", "human.75"]
+
+// Rich — with optional details
+"present": [
+    "dog.75",
+    {"agent": "human.75", "attention": "elsewhere", "distance_m": 3}
+]
+```
+
+This minimal approach elegantly handles diverse scenarios without overclaiming:
+
+- **Dog with inattentive human**: `"present": ["dog.75", {"agent": "human.75", "attention": "distracted"}]`
+- **Chimp broadcast call**: `"present": ["chimp.1", "chimp.2", "chimp.3"]` — no claim about who heard
+- **Wolf chorus**: Multiple overlapping events with the same `present` list; coordination is evident from timestamps
+
+Whether an agent attended, responded, or was the intended addressee belongs in analysis or annotations — not the base schema.
 
 ### Example
 

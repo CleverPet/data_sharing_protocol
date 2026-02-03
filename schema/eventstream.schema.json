@@ -145,6 +145,27 @@
                 }
             }
         },
+        "AgentRef": {
+            "description": "Reference to an agent, either as a simple id string or an object with additional details.",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "Agent id (shorthand for {\"agent\": \"...\"})"
+                },
+                {
+                    "type": "object",
+                    "description": "Agent reference with optional details.",
+                    "required": ["agent"],
+                    "additionalProperties": true,
+                    "properties": {
+                        "agent": {
+                            "type": "string",
+                            "description": "Agent id."
+                        }
+                    }
+                }
+            ]
+        },
         "Measurement": {
             "type": "object",
             "description": "A single measured dimension with value, unit, and optional method.",
@@ -228,7 +249,12 @@
                 },
                 "agent": {
                     "type": "string",
-                    "description": "Agent id who caused the event."
+                    "description": "Agent id who produced this event."
+                },
+                "present": {
+                    "type": "array",
+                    "description": "Agents present when this event occurred. If omitted, assume all agents in the eventstream. Items can be simple agent ids or objects with additional details (attention, distance, role, etc.).",
+                    "items": { "$ref": "#/$defs/AgentRef" }
                 },
                 "start": {
                     "type": "string",
