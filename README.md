@@ -25,6 +25,7 @@ The core data file is a json eventstream.
 
 ```json
 {
+    "schema_version": "1.0.0",
     "id": string, # id of file
     "provenance": string, # id of data producer
     "start": timestamp, # start of stream
@@ -106,6 +107,7 @@ One could imagine representing behaviors defined in an ethogram in such a schema
 
 ```json
 {
+    "schema_version": "1.0.0",
     "id": "cleverpet.75",
     "provenance": "cleverpet",
     "start": "2021-11-21T18:30:35.911000",
@@ -215,3 +217,25 @@ def tabulate(event_stream):
         })
     pd.DataFrame(rows).to_csv("example.csv")
 ```
+
+## Versioning
+
+Every eventstream file includes a `schema_version` field indicating which version of the schema it conforms to. The project follows Semantic Versioning: patch releases for documentation changes, minor releases for additive fields, and major releases for breaking changes. Implementations must follow a "must-ignore and preserve" policy for unknown fields.
+
+For the full versioning policy, compatibility guarantees, and migration guide template, see [VERSIONING.md](VERSIONING.md).
+
+## Extensions
+
+The eventstream schema uses a minimal universal core plus domain-specific extensions architecture, inspired by Darwin Core. New event types, agent properties, and context fields can be proposed without modifying the core schema. Extensions use dot-scoped namespaces (e.g., `ucdavis.ethogram.lip_licking`) to avoid collisions.
+
+For the extension registry, example extensions, and the proposal template, see [EXTENSIONS.md](EXTENSIONS.md).
+
+## Validation
+
+A validation script is provided to check eventstream JSON files against the schema:
+
+```
+python validate.py data_sample/cleverpet.1.json
+```
+
+The script reports any schema violations and confirms whether a file is valid.
