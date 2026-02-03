@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://github.com/FluentPet/data_sharing_protocol/schema/eventstream.schema.json",
     "title": "Eventstream",
-    "description": "A JSON eventstream for interspecies AAC device interactions.",
+    "description": "A JSON eventstream for interspecies AIC device interactions.",
     "type": "object",
     "required": ["id", "provenance", "start", "end", "agents", "events"],
     "additionalProperties": true,

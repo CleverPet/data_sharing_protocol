@@ -2,7 +2,7 @@
 
 As technology is increasingly used to observe and interact with animals, we are excited about the insights researchers and hobbyists might gain through analyzing such data.
 
-This document outlines a json format for storing event streams of interspecies AAC device interactions and provides some example data analyses using data stored in this manner.
+This document outlines a json format for storing event streams of interspecies AIC device interactions and provides some example data analyses using data stored in this manner.
 
 ## Desiderata
 
@@ -277,7 +277,7 @@ Second, let us look at the hours in which button presses tend to occur:
 
 ![Button Presses By Hour](press_by_hour.png)
 
-Third, let us take a look at the gaps between turns in AAC interactions. This kind of analysis is interesting as it allows us to assess whether interactions between canines and humans display any of the regulatory structures found in human-human conversation.
+Third, let us take a look at the gaps between turns in AIC interactions. This kind of analysis is interesting as it allows us to assess whether interactions between canines and humans display any of the regulatory structures found in human-human conversation.
 
 ![gap time](gaps.png)
 
