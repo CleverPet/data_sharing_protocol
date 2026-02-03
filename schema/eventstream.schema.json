@@ -146,11 +146,11 @@
             }
         },
         "AgentRef": {
-            "description": "Reference to an agent, either as a simple id string or an object with additional details.",
+            "description": "Agent id (string) or object with agent id plus additional properties.",
             "oneOf": [
                 {
                     "type": "string",
-                    "description": "Agent id (shorthand for {\"agent\": \"...\"})"
+                    "description": "Agent id."
                 },
                 {
                     "type": "object",
@@ -253,7 +253,7 @@
                 },
                 "present": {
                     "type": "array",
-                    "description": "Agents present when this event occurred. If omitted, assume all agents in the eventstream. Items can be simple agent ids or objects with additional details (attention, distance, role, etc.).",
+                    "description": "Agents co-present when this event occurred. Defaults to all agents in eventstream.",
                     "items": { "$ref": "#/$defs/AgentRef" }
                 },
                 "start": {
