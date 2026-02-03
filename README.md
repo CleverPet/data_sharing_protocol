@@ -106,7 +106,7 @@ One could imagine representing behaviors defined in an ethogram in such a schema
 
 #### Co-presence
 
-Communication involves more than one agent. The `present` field records who was there.
+The `present` field records which agents were there when an event occurred.
 
 ```json
 "present": ["dog.75", "human.75"]
@@ -120,8 +120,6 @@ If omitted, assume all agents in the eventstream. Items can be strings or object
     {"agent": "human.75", "attention": "elsewhere", "distance_m": 3}
 ]
 ```
-
-Attention, response, and intention are questions for analysis — not data capture.
 
 ### Example
 
