@@ -4,17 +4,16 @@ This document describes the extension architecture for the interspecies eventstr
 
 ## Architecture: Core Plus Extensions
 
-As of schema version 1.1.0, the core schema natively supports signal-level data for acoustic, electric, visual, and other communication modalities. The first-class `signal`, `recording`, and `classification` fields on events, along with `communication_profile` on agents, cover the most common bioacoustic and multi-modal data needs directly.
+The core schema (version 1.2.0) provides a modality-agnostic `measurements` array, a `source` object for sensor metadata, a `spatial` object for position/trajectory, and a `classification` object. These cover the structural **how** of attaching data to events. What remains open — and what extensions govern — is the **vocabulary**: what dimension names mean, how they relate to each other, and which taxonomies apply.
 
-Extensions are for **domain-specific additions** that go beyond what the core provides:
+Extensions are **dimension vocabularies and taxonomies**, not new schema fields:
 
-- **Specialized classification taxonomies**: Custom call-type catalogs, ethogram behavior codes, or species-specific labeling systems that reference the core `classification.taxonomy` field.
-- **Analysis metadata**: Outputs from specific analysis pipelines (e.g., deep learning feature embeddings, spectrogram parameters, source-separation results) that attach to events via `other_data`.
-- **Novel modalities**: Sensory channels or data types not yet covered by the core `signal.modality` values (e.g., electroreception waveform data, bioluminescence patterns).
-- **Video and spatial annotation**: Frame-level video references, bounding boxes, 3D tracking coordinates, and other spatial data.
-- **Ethogram coding**: Standardized behavioral observations from ethogram frameworks.
+- **Dimension vocabularies**: Standardized `dimension` names for a domain. For example, a bioacoustics vocabulary defines `freq_min_hz`, `freq_max_hz`, `dominant_freq_hz`, `bandwidth_hz`, `call_type` as conventional dimension names for acoustic measurements. A waggle-dance vocabulary defines `waggle_angle_deg`, `waggle_duration_ms`, `indicated_distance_m`.
+- **Classification taxonomies**: Custom call-type catalogs, ethogram behavior codes, or species-specific labeling systems referenced by `classification.taxonomy`.
+- **Event type registries**: Namespaced event types like `ethogram.play_bow` or `waggle_run` that communities agree on.
+- **Analysis metadata**: Outputs from specific analysis pipelines (e.g., deep learning feature embeddings, spectrogram parameters) stored in `other_data`.
 
-The core handles the **what, when, who, and how** of communication events. Extensions add the **domain-specific why and details**.
+The core schema handles the **structure**. Extensions standardize the **vocabulary**.
 
 ## Namespace Convention
 
@@ -37,32 +36,64 @@ Anyone may propose new event types, agent properties, or context fields for the 
 
 ### What Can Be Extended
 
-- **Event types**: New values for the `type` field (e.g., `ethogram.tail_wag`, `vocalization.whistle`)
+- **Event types**: New values for the `type` field (e.g., `ethogram.tail_wag`, `waggle_dance`)
+- **Dimension vocabularies**: Standardized `dimension` names for use in `measurements` (e.g., `freq_min_hz`, `waggle_angle_deg`, `tail_wag_freq_hz`)
 - **Agent properties**: New keys in the agent `metadata` object (e.g., `training_level`, `device_model`)
 - **Context fields**: New keys in an event `context` object (e.g., `location`, `weather`)
 - **Other data fields**: New keys in `other_data` for domain-specific payloads
 - **Classification taxonomies**: Custom taxonomy references used in the core `classification.taxonomy` field
-- **Signal metadata**: Additional keys in the `signal` object (it allows `additionalProperties`)
 
 ## Example Extensions
 
-### Ethogram Extension
+### Bioacoustics Dimension Vocabulary
 
-For coding animal behaviors from standardized ethograms:
+Conventional dimension names for acoustic measurements:
+
+| Dimension | Unit | Description |
+|-----------|------|-------------|
+| `freq_min_hz` | Hz | Minimum frequency |
+| `freq_max_hz` | Hz | Maximum frequency |
+| `dominant_freq_hz` | Hz | Dominant / peak frequency |
+| `bandwidth_hz` | Hz | Signal bandwidth |
+| `click_count` | — | Number of clicks in a train |
+| `mean_ici_ms` | ms | Mean inter-click interval |
+
+### Waggle Dance Dimension Vocabulary
+
+Conventional dimension names for honeybee dance communication:
+
+| Dimension | Unit | Description |
+|-----------|------|-------------|
+| `waggle_angle_deg` | deg | Angle of waggle run relative to vertical |
+| `waggle_duration_ms` | ms | Duration of waggle phase |
+| `indicated_distance_m` | m | Estimated distance to resource |
+| `circuit_count` | — | Number of dance circuits |
+| `return_phase_duration_ms` | ms | Duration of return phase |
+| `abdomen_waggle_freq_hz` | Hz | Abdomen oscillation frequency |
+
+### Canine Ethogram
+
+Event types and dimension names for dog behavior observation:
+
+**Event types**: `ethogram.play_bow`, `ethogram.tail_wag`, `ethogram.spin`, `ethogram.lip_licking`
+
+| Dimension | Unit | Description |
+|-----------|------|-------------|
+| `tail_wag_freq_hz` | Hz | Tail wag frequency |
+| `tail_height_deg` | deg | Tail angle above horizontal |
+| `spin_rotations` | — | Number of full rotations |
+| `spin_speed_rpm` | rpm | Spin angular velocity |
+
+### Ethogram Extension Example
 
 ```json
 {
     "id": "ucdavis.ethogram.0.1",
-    "type": "ucdavis.evenson_ethogram.lip_licking",
+    "type": "ethogram.lip_licking",
     "agent": "ucdavis.dog.42",
     "start": "2024-03-15T14:22:01.000000",
     "content": "lip_licking",
     "duration_ms": 1200,
-    "other_data": {
-        "ethogram_id": "evenson_2019",
-        "behavior_category": "oral",
-        "coder_id": "researcher_A"
-    },
     "classification": {
         "method": "manual",
         "label": "lip_licking",
@@ -74,7 +105,7 @@ For coding animal behaviors from standardized ethograms:
 
 ### Video Annotation Extension
 
-For linking events to video frame ranges:
+For linking events to video frame ranges via `other_data`:
 
 ```json
 {
@@ -84,41 +115,17 @@ For linking events to video frame ranges:
     "start": "2024-06-01T09:15:30.000000",
     "end": "2024-06-01T09:15:31.500000",
     "content": "outside",
+    "source": {
+        "type": "video",
+        "sensor": "session_cam1",
+        "fps": 30,
+        "file": "session_2024-06-01_cam1.mp4",
+        "format": "mp4"
+    },
     "other_data": {
-        "mit.video.source": "session_2024-06-01_cam1.mp4",
         "mit.video.frame_start": 13542,
         "mit.video.frame_end": 13587,
         "mit.video.bounding_box": [120, 340, 280, 510]
-    }
-}
-```
-
-### Species-Specific Classification Taxonomy Extension
-
-For registering a custom whistle catalog as a classification taxonomy:
-
-```json
-{
-    "id": "sarasota.catalog.0.1",
-    "type": "vocalization",
-    "agent": "sarasota.dolphin.FB185",
-    "start": "2024-07-15T09:23:14.337000",
-    "content": "signature_whistle",
-    "signal": {
-        "call_type": "signature_whistle",
-        "modality": "acoustic",
-        "dominant_freq_hz": 8900
-    },
-    "classification": {
-        "method": "template_matching",
-        "label": "FB185_signature",
-        "confidence": 0.92,
-        "taxonomy": "sarasota_whistle_catalog_2024"
-    },
-    "other_data": {
-        "sarasota.catalog.whistle_id": "FB185-SW-A",
-        "sarasota.catalog.first_recorded": "2018-06-12",
-        "sarasota.catalog.n_matches": 47
     }
 }
 ```
@@ -144,18 +151,10 @@ Brief description of what research question or data capture need this extension 
 #### Scope
 
 - Event types introduced: (list)
+- Dimension vocabulary: (table of dimension names, units, descriptions)
 - Agent properties introduced: (list)
 - Other data fields introduced: (list)
 - Classification taxonomies introduced: (list)
-
-#### Schema
-
-```json
-{
-    "field_name": "type and description",
-    "field_name_2": "type and description"
-}
-```
 
 #### Example
 
@@ -169,6 +168,6 @@ Brief description of what research question or data capture need this extension 
 
 #### Compatibility Notes
 
-Any notes on interactions with existing core fields (signal, recording, classification) or other extensions.
+Any notes on interactions with existing core fields (measurements, source, classification, spatial) or other extensions.
 
 ---

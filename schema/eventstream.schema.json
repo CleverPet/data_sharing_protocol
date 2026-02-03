@@ -10,7 +10,7 @@
         "schema_version": {
             "type": "string",
             "description": "Schema version in semver format.",
-            "default": "1.1.0"
+            "default": "1.2.0"
         },
         "id": {
             "type": "string",
@@ -101,6 +101,73 @@
                 }
             }
         },
+        "Measurement": {
+            "type": "object",
+            "description": "A single measured dimension with value, unit, and optional method.",
+            "required": ["dimension", "value"],
+            "additionalProperties": true,
+            "properties": {
+                "dimension": {
+                    "type": "string",
+                    "description": "What is being measured (e.g., freq_min_hz, waggle_angle_deg, body_length_cm)."
+                },
+                "value": {
+                    "type": "number",
+                    "description": "Numeric value of the measurement."
+                },
+                "unit": {
+                    "type": "string",
+                    "description": "Unit of measurement (e.g., Hz, deg, ms, m)."
+                },
+                "method": {
+                    "type": "string",
+                    "description": "How the measurement was obtained (e.g., spectrogram, accelerometer, manual)."
+                },
+                "note": {
+                    "type": "string",
+                    "description": "Free-text note about this measurement."
+                }
+            }
+        },
+        "Spatial": {
+            "type": "object",
+            "description": "Spatial position and trajectory data.",
+            "additionalProperties": true,
+            "properties": {
+                "reference_frame": {
+                    "type": "string",
+                    "description": "Coordinate reference frame (e.g., hive_entrance, arena_top_left, WGS84)."
+                },
+                "coordinates": {
+                    "type": "array",
+                    "description": "Position as [x, y] or [x, y, z] in the reference frame.",
+                    "items": { "type": "number" }
+                },
+                "unit": {
+                    "type": "string",
+                    "description": "Unit for coordinates (e.g., cm, m, deg)."
+                },
+                "trajectory": {
+                    "type": "array",
+                    "description": "Time-series of positions.",
+                    "items": {
+                        "type": "object",
+                        "required": ["t_ms", "coordinates"],
+                        "properties": {
+                            "t_ms": {
+                                "type": "number",
+                                "description": "Time offset in milliseconds from event start."
+                            },
+                            "coordinates": {
+                                "type": "array",
+                                "description": "Position at this time.",
+                                "items": { "type": "number" }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "Event": {
             "type": "object",
             "description": "An extendable event representing an occurrence in time.",
@@ -173,55 +240,23 @@
                     "type": "string",
                     "description": "Parent event id for hierarchical events (e.g., song > theme > phrase > unit)."
                 },
-                "signal": {
-                    "type": "object",
-                    "description": "Signal-level data for acoustic, electric, visual, or other communication signals.",
-                    "additionalProperties": true,
-                    "properties": {
-                        "freq_min_hz": {
-                            "type": "number",
-                            "description": "Minimum frequency in Hz."
-                        },
-                        "freq_max_hz": {
-                            "type": "number",
-                            "description": "Maximum frequency in Hz."
-                        },
-                        "dominant_freq_hz": {
-                            "type": "number",
-                            "description": "Dominant frequency in Hz."
-                        },
-                        "bandwidth_hz": {
-                            "type": "number",
-                            "description": "Signal bandwidth in Hz."
-                        },
-                        "call_type": {
-                            "type": "string",
-                            "description": "Type of call or signal (e.g., signature_whistle, echolocation_click, song)."
-                        },
-                        "contour_points": {
-                            "type": "array",
-                            "description": "Frequency contour as array of [time_offset_ms, freq_hz] pairs.",
-                            "items": {
-                                "type": "array",
-                                "items": { "type": "number" },
-                                "minItems": 2,
-                                "maxItems": 2
-                            }
-                        },
-                        "modality": {
-                            "type": "string",
-                            "description": "Signal modality (acoustic, ultrasonic, infrasonic, vibration, electric, visual, chemical)."
-                        }
-                    }
+                "measurements": {
+                    "type": "array",
+                    "description": "Modality-agnostic measurements associated with this event.",
+                    "items": { "$ref": "#/$defs/Measurement" }
                 },
-                "recording": {
+                "source": {
                     "type": "object",
-                    "description": "Recording metadata linking the event to raw sensor data.",
+                    "description": "Source metadata linking the event to raw sensor data.",
                     "additionalProperties": true,
                     "properties": {
-                        "source": {
+                        "type": {
                             "type": "string",
-                            "description": "Recording source (e.g., hydrophone, microphone, accelerometer)."
+                            "description": "Source type (e.g., audio, video, accelerometer, manual)."
+                        },
+                        "sensor": {
+                            "type": "string",
+                            "description": "Sensor or device name (e.g., hydrophone, overhead_camera, piezo)."
                         },
                         "channel": {
                             "type": "integer",
@@ -231,6 +266,10 @@
                             "type": "number",
                             "description": "Sample rate in Hz."
                         },
+                        "fps": {
+                            "type": "number",
+                            "description": "Frames per second for video sources."
+                        },
                         "file": {
                             "type": "string",
                             "description": "Filename or path to raw recording."
@@ -239,11 +278,18 @@
                             "type": "integer",
                             "description": "Offset in samples from start of recording file."
                         },
+                        "offset_ms": {
+                            "type": "number",
+                            "description": "Offset in milliseconds from start of recording file."
+                        },
                         "format": {
                             "type": "string",
-                            "description": "File format (e.g., wav, flac, mp3)."
+                            "description": "File format (e.g., wav, flac, mp4)."
                         }
                     }
+                },
+                "spatial": {
+                    "$ref": "#/$defs/Spatial"
                 },
                 "classification": {
                     "type": "object",

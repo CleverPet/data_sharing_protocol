@@ -1,5 +1,5 @@
 {
-    "schema_version": "1.1.0",
+    "schema_version": "1.2.0",
     "id": "sarasota.session.2024-07-15",
     "provenance": "sarasota",
     "start": "2024-07-15T09:20:00.000000",
@@ -51,8 +51,9 @@
                 "water_depth_m": 3.2,
                 "water_temp_c": 29.1
             },
-            "recording": {
-                "source": "hydrophone",
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
                 "sample_rate_hz": 96000,
                 "file": "sarasota_2024-07-15_bay.wav",
                 "format": "wav"
@@ -66,24 +67,15 @@
             "end": "2024-07-15T09:23:15.021000",
             "content": "signature_whistle",
             "duration_ms": 684,
-            "signal": {
-                "freq_min_hz": 5200,
-                "freq_max_hz": 14800,
-                "dominant_freq_hz": 8900,
-                "bandwidth_hz": 9600,
-                "call_type": "signature_whistle",
-                "modality": "acoustic",
-                "contour_points": [
-                    [0, 5200],
-                    [100, 7800],
-                    [200, 11300],
-                    [350, 14800],
-                    [500, 12100],
-                    [684, 8900]
-                ]
-            },
-            "recording": {
-                "source": "hydrophone",
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 5200, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "freq_max_hz", "value": 14800, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "dominant_freq_hz", "value": 8900, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "bandwidth_hz", "value": 9600, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
                 "channel": 0,
                 "sample_rate_hz": 96000,
                 "file": "sarasota_2024-07-15_bay.wav",
@@ -106,23 +98,15 @@
             "end": "2024-07-15T09:23:16.780000",
             "content": "signature_whistle",
             "duration_ms": 680,
-            "signal": {
-                "freq_min_hz": 6100,
-                "freq_max_hz": 15200,
-                "dominant_freq_hz": 10200,
-                "bandwidth_hz": 9100,
-                "call_type": "signature_whistle",
-                "modality": "acoustic",
-                "contour_points": [
-                    [0, 6100],
-                    [120, 9400],
-                    [280, 15200],
-                    [450, 13000],
-                    [680, 10200]
-                ]
-            },
-            "recording": {
-                "source": "hydrophone",
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 6100, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "freq_max_hz", "value": 15200, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "dominant_freq_hz", "value": 10200, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "bandwidth_hz", "value": 9100, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
                 "channel": 0,
                 "sample_rate_hz": 96000,
                 "file": "sarasota_2024-07-15_bay.wav",
@@ -145,16 +129,15 @@
             "end": "2024-07-15T09:25:02.451200",
             "content": "echolocation_click",
             "duration_ms": 0.12,
-            "signal": {
-                "freq_min_hz": 20000,
-                "freq_max_hz": 130000,
-                "dominant_freq_hz": 95000,
-                "bandwidth_hz": 110000,
-                "call_type": "echolocation_click",
-                "modality": "ultrasonic"
-            },
-            "recording": {
-                "source": "hydrophone",
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 20000, "unit": "Hz" },
+                { "dimension": "freq_max_hz", "value": 130000, "unit": "Hz" },
+                { "dimension": "dominant_freq_hz", "value": 95000, "unit": "Hz" },
+                { "dimension": "bandwidth_hz", "value": 110000, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
                 "channel": 0,
                 "sample_rate_hz": 96000,
                 "file": "sarasota_2024-07-15_bay.wav",
@@ -177,19 +160,15 @@
             "end": "2024-07-15T09:25:03.890000",
             "content": "echolocation_click_train",
             "duration_ms": 1440,
-            "signal": {
-                "freq_min_hz": 20000,
-                "freq_max_hz": 130000,
-                "call_type": "click_train",
-                "modality": "ultrasonic"
-            },
-            "other_data": {
-                "click_count": 48,
-                "mean_ici_ms": 30.0
-            }
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 20000, "unit": "Hz" },
+                { "dimension": "freq_max_hz", "value": 130000, "unit": "Hz" },
+                { "dimension": "click_count", "value": 48 },
+                { "dimension": "mean_ici_ms", "value": 30.0, "unit": "ms" }
+            ]
         },
         {
-            "id": "sarasota.ev.3",
+            "id": "sarasota.ev.5",
             "type": "vocalization",
             "agent": "sarasota.dolphin.FB185",
             "start": "2024-07-15T09:25:02.450000",
@@ -198,23 +177,22 @@
             "duration_ms": 0.12
         },
         {
-            "id": "sarasota.ev.5",
+            "id": "sarasota.ev.6",
             "type": "vocalization",
             "agent": "sarasota.dolphin.FB294",
             "start": "2024-07-15T09:28:44.200000",
             "end": "2024-07-15T09:28:45.750000",
             "content": "burst_pulse",
             "duration_ms": 1550,
-            "signal": {
-                "freq_min_hz": 2000,
-                "freq_max_hz": 80000,
-                "dominant_freq_hz": 25000,
-                "bandwidth_hz": 78000,
-                "call_type": "burst_pulse",
-                "modality": "acoustic"
-            },
-            "recording": {
-                "source": "hydrophone",
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 2000, "unit": "Hz" },
+                { "dimension": "freq_max_hz", "value": 80000, "unit": "Hz" },
+                { "dimension": "dominant_freq_hz", "value": 25000, "unit": "Hz" },
+                { "dimension": "bandwidth_hz", "value": 78000, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
                 "channel": 0,
                 "sample_rate_hz": 96000,
                 "file": "sarasota_2024-07-15_bay.wav",

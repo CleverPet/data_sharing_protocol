@@ -1,0 +1,143 @@
+{
+    "schema_version": "1.2.0",
+    "id": "cleverpet.session.2024-09-10",
+    "provenance": "cleverpet",
+    "start": "2024-09-10T14:00:00.000000",
+    "end": "2024-09-10T14:05:00.000000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.200",
+            "species": "canis familiaris",
+            "metadata": {
+                "name": "Maple",
+                "breed": "border_collie",
+                "sex": "female",
+                "age_years": 3,
+                "training_method": "FluentPet"
+            },
+            "communication_profile": {
+                "primary_modalities": ["acoustic", "visual"],
+                "description": "Border collie trained on FluentPet soundboard with 45 buttons."
+            }
+        },
+        {
+            "id": "cleverpet.human.200",
+            "species": "homo sapiens",
+            "metadata": {
+                "name": "Alex",
+                "role": "owner"
+            }
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.ev.0",
+            "type": "ethogram.play_bow",
+            "agent": "cleverpet.dog.200",
+            "start": "2024-09-10T14:01:12.000000",
+            "end": "2024-09-10T14:01:13.400000",
+            "content": "play_bow",
+            "duration_ms": 1400,
+            "source": {
+                "type": "video",
+                "sensor": "overhead_camera",
+                "fps": 30,
+                "file": "cleverpet_session_2024-09-10.mp4",
+                "offset_ms": 72000,
+                "format": "mp4"
+            },
+            "classification": {
+                "method": "manual",
+                "label": "play_bow",
+                "confidence": 1.0,
+                "taxonomy": "hecht_canine_ethogram_2023"
+            }
+        },
+        {
+            "id": "cleverpet.ev.1",
+            "type": "button_press",
+            "agent": "cleverpet.dog.200",
+            "start": "2024-09-10T14:01:15.200000",
+            "end": "2024-09-10T14:01:15.700000",
+            "content": "play",
+            "source": {
+                "type": "video",
+                "sensor": "overhead_camera",
+                "fps": 30,
+                "file": "cleverpet_session_2024-09-10.mp4",
+                "offset_ms": 75200,
+                "format": "mp4"
+            }
+        },
+        {
+            "id": "cleverpet.ev.2",
+            "type": "button_press",
+            "agent": "cleverpet.dog.200",
+            "start": "2024-09-10T14:01:16.800000",
+            "end": "2024-09-10T14:01:17.300000",
+            "content": "want"
+        },
+        {
+            "id": "cleverpet.ev.3",
+            "type": "button_press",
+            "agent": "cleverpet.dog.200",
+            "start": "2024-09-10T14:01:18.100000",
+            "end": "2024-09-10T14:01:18.600000",
+            "content": "outside"
+        },
+        {
+            "id": "cleverpet.ev.4",
+            "type": "utterance",
+            "agent": "cleverpet.human.200",
+            "start": "2024-09-10T14:01:20.000000",
+            "end": "2024-09-10T14:01:22.000000",
+            "content": "okay let's go outside"
+        },
+        {
+            "id": "cleverpet.ev.5",
+            "type": "ethogram.tail_wag",
+            "agent": "cleverpet.dog.200",
+            "start": "2024-09-10T14:01:15.000000",
+            "end": "2024-09-10T14:01:22.000000",
+            "content": "tail_wag_high",
+            "duration_ms": 7000,
+            "measurements": [
+                { "dimension": "tail_wag_freq_hz", "value": 5.2, "unit": "Hz", "method": "video_tracking" },
+                { "dimension": "tail_height_deg", "value": 65, "unit": "deg", "method": "video_tracking", "note": "Angle above horizontal; high wag indicates excitement." }
+            ],
+            "source": {
+                "type": "video",
+                "sensor": "overhead_camera",
+                "fps": 30,
+                "file": "cleverpet_session_2024-09-10.mp4",
+                "offset_ms": 75000,
+                "format": "mp4"
+            },
+            "classification": {
+                "method": "manual",
+                "label": "tail_wag_excited",
+                "confidence": 0.95,
+                "taxonomy": "hecht_canine_ethogram_2023"
+            }
+        },
+        {
+            "id": "cleverpet.ev.6",
+            "type": "ethogram.spin",
+            "agent": "cleverpet.dog.200",
+            "start": "2024-09-10T14:01:20.500000",
+            "end": "2024-09-10T14:01:21.800000",
+            "content": "spin_clockwise",
+            "duration_ms": 1300,
+            "measurements": [
+                { "dimension": "spin_rotations", "value": 1.5 },
+                { "dimension": "spin_speed_rpm", "value": 69.2, "unit": "rpm", "method": "video_tracking" }
+            ],
+            "classification": {
+                "method": "manual",
+                "label": "excited_spin",
+                "confidence": 0.90,
+                "taxonomy": "hecht_canine_ethogram_2023"
+            }
+        }
+    ]
+}

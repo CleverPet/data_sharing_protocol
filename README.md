@@ -167,101 +167,109 @@ One could imagine representing behaviors defined in an ethogram in such a schema
 }
 ```
 
-## Signal-Level Data
+## Measurements
 
-Version 1.1.0 elevates acoustic and signal-level data to first-class status in the schema. While button presses remain fully supported, the reality is that acoustic, electric, and chemical signaling is how the vast majority of species on Earth actually communicate. The core protocol now models these communication events natively rather than relegating them to extensions.
+Version 1.2.0 introduces **measurements** as a modality-agnostic way to attach numeric data to events. Rather than hard-coding fields for a single modality (e.g., acoustic frequencies), the `measurements` array lets any event carry structured numeric observations — from bioacoustic spectral features, to waggle dance angles, to ethogram motion metrics.
 
-### First-Class Signal Fields
+### Core Fields
 
-Events may now include the following optional top-level fields:
+Events may include the following optional top-level fields:
 
-- **`signal`**: Spectral and signal-type metadata (frequency range, dominant frequency, bandwidth, call type, frequency contour points, modality)
-- **`recording`**: Links to raw sensor data (source device, channel, sample rate, file reference, sample offset, format)
-- **`classification`**: Automated or manual classification results (method, label, confidence, model version, taxonomy reference)
-- **`duration_ms`**: Duration in milliseconds with sub-millisecond precision for fast signals like bat echolocation clicks
-- **`parent_id`**: Links events hierarchically (e.g., a whale song contains themes, which contain phrases, which contain units)
+- **`measurements`**: Array of `{dimension, value, unit?, method?, note?}` objects. Each measurement names what is being measured (`dimension`), gives a numeric `value`, and optionally records the `unit`, `method` of measurement, and a free-text `note`. The dimension vocabulary is open-ended — communities define their own (see [EXTENSIONS.md](EXTENSIONS.md)).
+- **`source`**: Links the event to raw sensor data (type, sensor, channel, sample_rate_hz, fps, file, offset_samples, offset_ms, format).
+- **`spatial`**: Position and trajectory data (reference_frame, coordinates, unit, trajectory).
+- **`classification`**: Automated or manual classification results (method, label, confidence, model version, taxonomy reference).
+- **`duration_ms`**: Duration in milliseconds with sub-millisecond precision for fast signals like bat echolocation clicks.
+- **`parent_id`**: Links events hierarchically (e.g., a whale song contains themes; a waggle dance contains waggle runs).
 
 Agents may also include a **`communication_profile`** describing their hearing range, vocalization range, primary modalities, and a free-text description.
 
-### Example: Dolphin Signature Whistle
+### Example: Bioacoustics (dolphin signature whistle)
 
 ```json
 {
-    "id": "sarasota.sw.0",
+    "id": "sarasota.ev.1",
     "type": "vocalization",
     "agent": "sarasota.dolphin.FB185",
     "start": "2024-07-15T09:23:14.337000",
-    "end": "2024-07-15T09:23:15.021000",
-    "content": "signature_whistle",
     "duration_ms": 684,
-    "signal": {
-        "freq_min_hz": 5200,
-        "freq_max_hz": 14800,
-        "dominant_freq_hz": 8900,
-        "bandwidth_hz": 9600,
-        "call_type": "signature_whistle",
-        "modality": "acoustic",
-        "contour_points": [
-            [0, 5200], [100, 7800], [200, 11300],
-            [350, 14800], [500, 12100], [684, 8900]
-        ]
-    },
-    "recording": {
-        "source": "hydrophone",
+    "content": "signature_whistle",
+    "measurements": [
+        { "dimension": "freq_min_hz", "value": 5200, "unit": "Hz", "method": "spectrogram" },
+        { "dimension": "freq_max_hz", "value": 14800, "unit": "Hz", "method": "spectrogram" },
+        { "dimension": "dominant_freq_hz", "value": 8900, "unit": "Hz", "method": "spectrogram" },
+        { "dimension": "bandwidth_hz", "value": 9600, "unit": "Hz" }
+    ],
+    "source": {
+        "type": "audio",
+        "sensor": "hydrophone",
         "channel": 0,
         "sample_rate_hz": 96000,
-        "file": "sarasota_2024-07-15_ch0.wav",
-        "offset_samples": 4480128,
+        "file": "sarasota_2024-07-15_bay.wav",
+        "offset_samples": 18524160,
         "format": "wav"
     },
     "classification": {
         "method": "template_matching",
         "label": "FB185_signature",
         "confidence": 0.92,
-        "model_version": "whistle_id_v3.1",
         "taxonomy": "sarasota_whistle_catalog_2024"
     }
 }
 ```
 
-### Example: Hierarchical Whale Song Events
-
-Whale songs have a natural hierarchy: song → theme → phrase → unit. The `parent_id` field captures this:
+### Example: Spatial behavior (bee waggle dance)
 
 ```json
-[
-    {
-        "id": "hawaii.song.0",
-        "type": "song",
-        "agent": "hawaii.humpback.MN2401",
-        "start": "2024-02-10T06:15:00.000000",
-        "duration_ms": 480000,
-        "content": "song_session"
+{
+    "id": "sussex.ev.0",
+    "type": "waggle_dance",
+    "agent": "sussex.bee.W42",
+    "start": "2024-08-03T11:02:14.000000",
+    "duration_ms": 8500,
+    "content": "waggle_dance",
+    "measurements": [
+        { "dimension": "waggle_angle_deg", "value": 43.2, "unit": "deg", "method": "video_tracking" },
+        { "dimension": "waggle_duration_ms", "value": 820, "unit": "ms" },
+        { "dimension": "indicated_distance_m", "value": 1250, "unit": "m", "method": "regression_model" }
+    ],
+    "source": {
+        "type": "video",
+        "sensor": "overhead_camera",
+        "fps": 60,
+        "file": "sussex_hive3_2024-08-03.mp4",
+        "offset_ms": 134000,
+        "format": "mp4"
     },
-    {
-        "id": "hawaii.theme.0",
-        "type": "theme",
-        "agent": "hawaii.humpback.MN2401",
-        "start": "2024-02-10T06:15:00.000000",
-        "parent_id": "hawaii.song.0",
-        "duration_ms": 120000,
-        "content": "theme_A"
-    },
-    {
-        "id": "hawaii.phrase.0",
-        "type": "phrase",
-        "agent": "hawaii.humpback.MN2401",
-        "start": "2024-02-10T06:15:00.000000",
-        "parent_id": "hawaii.theme.0",
-        "duration_ms": 15000,
-        "content": "phrase_A1",
-        "signal": {
-            "freq_min_hz": 80,
-            "freq_max_hz": 4000,
-            "modality": "acoustic"
-        }
+    "spatial": {
+        "reference_frame": "hive_entrance",
+        "coordinates": [12.4, 8.1],
+        "unit": "cm"
     }
-]
+}
+```
+
+### Example: Ethogram + button press (dog behavior observation)
+
+```json
+{
+    "id": "cleverpet.ev.5",
+    "type": "ethogram.tail_wag",
+    "agent": "cleverpet.dog.200",
+    "start": "2024-09-10T14:01:15.000000",
+    "duration_ms": 7000,
+    "content": "tail_wag_high",
+    "measurements": [
+        { "dimension": "tail_wag_freq_hz", "value": 5.2, "unit": "Hz", "method": "video_tracking" },
+        { "dimension": "tail_height_deg", "value": 65, "unit": "deg", "method": "video_tracking" }
+    ],
+    "classification": {
+        "method": "manual",
+        "label": "tail_wag_excited",
+        "confidence": 0.95,
+        "taxonomy": "hecht_canine_ethogram_2023"
+    }
+}
 ```
 
 ## Analysis
