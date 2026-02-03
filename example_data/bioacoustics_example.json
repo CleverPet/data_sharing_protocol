@@ -1,0 +1,227 @@
+{
+    "schema_version": "1.2.0",
+    "id": "sarasota.session.2024-07-15",
+    "provenance": "sarasota",
+    "start": "2024-07-15T09:20:00.000000",
+    "end": "2024-07-15T09:35:00.000000",
+    "location": {
+        "coordinates": [-156.83, 20.78],
+        "elevation_m": -50,
+        "site_name": "Auau Channel, Maui",
+        "habitat": "pelagic",
+        "country": "US",
+        "region": "Hawaii"
+    },
+    "agents": [
+        {
+            "id": "sarasota.dolphin.FB185",
+            "species": "tursiops truncatus",
+            "metadata": {
+                "name": "FB185",
+                "sex": "female",
+                "age_class": "adult",
+                "first_identified": "2012-05-20"
+            },
+            "communication_profile": {
+                "hearing_range_hz": [150, 160000],
+                "vocalization_range_hz": [800, 130000],
+                "primary_modalities": ["acoustic", "ultrasonic"],
+                "description": "Adult female bottlenose dolphin with well-documented signature whistle."
+            }
+        },
+        {
+            "id": "sarasota.dolphin.FB294",
+            "species": "tursiops truncatus",
+            "metadata": {
+                "name": "FB294",
+                "sex": "male",
+                "age_class": "juvenile",
+                "first_identified": "2020-08-11"
+            },
+            "communication_profile": {
+                "hearing_range_hz": [150, 160000],
+                "vocalization_range_hz": [1000, 130000],
+                "primary_modalities": ["acoustic", "ultrasonic"],
+                "description": "Juvenile male bottlenose dolphin, calf of FB185."
+            }
+        }
+    ],
+    "events": [
+        {
+            "id": "sarasota.ev.0",
+            "type": "session_start",
+            "start": "2024-07-15T09:20:00.000000",
+            "content": "Hydrophone deployment at Sarasota Bay channel marker 4",
+            "context": {
+                "location": "Sarasota Bay, FL",
+                "latitude": 27.3364,
+                "longitude": -82.5431,
+                "water_depth_m": 3.2,
+                "water_temp_c": 29.1
+            },
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "format": "wav"
+            }
+        },
+        {
+            "id": "sarasota.ev.1",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:23:14.337000",
+            "end": "2024-07-15T09:23:15.021000",
+            "content": "signature_whistle",
+            "duration_ms": 684,
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 5200, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "freq_max_hz", "value": 14800, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "dominant_freq_hz", "value": 8900, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "bandwidth_hz", "value": 9600, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 18524160,
+                "format": "wav"
+            },
+            "location": {
+                "coordinates": [-156.831, 20.781],
+                "elevation_m": -8
+            },
+            "classification": {
+                "method": "template_matching",
+                "label": "FB185_signature",
+                "confidence": 0.92,
+                "model_version": "whistle_id_v3.1",
+                "taxonomy": "sarasota_whistle_catalog_2024"
+            }
+        },
+        {
+            "id": "sarasota.ev.2",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB294",
+            "start": "2024-07-15T09:23:16.100000",
+            "end": "2024-07-15T09:23:16.780000",
+            "content": "signature_whistle",
+            "duration_ms": 680,
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 6100, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "freq_max_hz", "value": 15200, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "dominant_freq_hz", "value": 10200, "unit": "Hz", "method": "spectrogram" },
+                { "dimension": "bandwidth_hz", "value": 9100, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 18693600,
+                "format": "wav"
+            },
+            "classification": {
+                "method": "template_matching",
+                "label": "FB294_signature",
+                "confidence": 0.87,
+                "model_version": "whistle_id_v3.1",
+                "taxonomy": "sarasota_whistle_catalog_2024"
+            }
+        },
+        {
+            "id": "sarasota.ev.3",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:25:02.450000",
+            "end": "2024-07-15T09:25:02.451200",
+            "content": "echolocation_click",
+            "duration_ms": 0.12,
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 20000, "unit": "Hz" },
+                { "dimension": "freq_max_hz", "value": 130000, "unit": "Hz" },
+                { "dimension": "dominant_freq_hz", "value": 95000, "unit": "Hz" },
+                { "dimension": "bandwidth_hz", "value": 110000, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 28803552,
+                "format": "wav"
+            },
+            "classification": {
+                "method": "cnn",
+                "label": "echolocation_regular",
+                "confidence": 0.98,
+                "model_version": "click_classifier_v2.0",
+                "taxonomy": "au_2000_click_types"
+            }
+        },
+        {
+            "id": "sarasota.ev.4",
+            "type": "click_train",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:25:02.450000",
+            "end": "2024-07-15T09:25:03.890000",
+            "content": "echolocation_click_train",
+            "duration_ms": 1440,
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 20000, "unit": "Hz" },
+                { "dimension": "freq_max_hz", "value": 130000, "unit": "Hz" },
+                { "dimension": "click_count", "value": 48 },
+                { "dimension": "mean_ici_ms", "value": 30.0, "unit": "ms" }
+            ]
+        },
+        {
+            "id": "sarasota.ev.5",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB185",
+            "start": "2024-07-15T09:25:02.450000",
+            "parent_id": "sarasota.ev.4",
+            "content": "echolocation_click",
+            "duration_ms": 0.12
+        },
+        {
+            "id": "sarasota.ev.6",
+            "type": "vocalization",
+            "agent": "sarasota.dolphin.FB294",
+            "start": "2024-07-15T09:28:44.200000",
+            "end": "2024-07-15T09:28:45.750000",
+            "content": "burst_pulse",
+            "duration_ms": 1550,
+            "measurements": [
+                { "dimension": "freq_min_hz", "value": 2000, "unit": "Hz" },
+                { "dimension": "freq_max_hz", "value": 80000, "unit": "Hz" },
+                { "dimension": "dominant_freq_hz", "value": 25000, "unit": "Hz" },
+                { "dimension": "bandwidth_hz", "value": 78000, "unit": "Hz" }
+            ],
+            "source": {
+                "type": "audio",
+                "sensor": "hydrophone",
+                "channel": 0,
+                "sample_rate_hz": 96000,
+                "file": "sarasota_2024-07-15_bay.wav",
+                "offset_samples": 50467200,
+                "format": "wav"
+            },
+            "location": {
+                "coordinates": [-156.834, 20.779],
+                "elevation_m": -8
+            },
+            "classification": {
+                "method": "cnn",
+                "label": "social_burst_pulse",
+                "confidence": 0.78,
+                "model_version": "click_classifier_v2.0",
+                "taxonomy": "au_2000_click_types"
+            }
+        }
+    ]
+}

@@ -1,0 +1,400 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/FluentPet/data_sharing_protocol/schema/eventstream.schema.json",
+    "title": "Eventstream",
+    "description": "A JSON eventstream for interspecies AIC device interactions.",
+    "type": "object",
+    "required": ["id", "provenance", "start", "end", "agents", "events"],
+    "additionalProperties": true,
+    "properties": {
+        "schema_version": {
+            "type": "string",
+            "description": "Schema version in semver format.",
+            "default": "0.2.0"
+        },
+        "id": {
+            "type": "string",
+            "description": "Provenance-scoped id of the eventstream file."
+        },
+        "provenance": {
+            "type": "string",
+            "description": "Id of the data producer."
+        },
+        "start": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start of the stream (ISO 8601)."
+        },
+        "end": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End of the stream (ISO 8601)."
+        },
+        "agents": {
+            "type": "array",
+            "description": "List of agents in this eventstream.",
+            "items": { "$ref": "#/$defs/Agent" }
+        },
+        "events": {
+            "type": "array",
+            "description": "List of events in this eventstream.",
+            "items": { "$ref": "#/$defs/Event" }
+        },
+        "location": {
+            "$ref": "#/$defs/Location",
+            "description": "Geographic location of the study site."
+        }
+    },
+    "$defs": {
+        "Location": {
+            "type": "object",
+            "description": "Geographic location with GeoJSON-ordered coordinates.",
+            "required": ["coordinates"],
+            "additionalProperties": true,
+            "properties": {
+                "coordinates": {
+                    "type": "array",
+                    "description": "Position as [longitude, latitude] or [longitude, latitude, elevation] in GeoJSON order.",
+                    "items": { "type": "number" },
+                    "minItems": 2,
+                    "maxItems": 3
+                },
+                "datum": {
+                    "type": "string",
+                    "description": "Geodetic datum (default WGS84).",
+                    "default": "WGS84"
+                },
+                "elevation_m": {
+                    "type": "number",
+                    "description": "Elevation in meters (negative for underwater)."
+                },
+                "site_name": {
+                    "type": "string",
+                    "description": "Human-readable name of the site."
+                },
+                "habitat": {
+                    "type": "string",
+                    "description": "Habitat type (e.g., pelagic, forest, agricultural, urban)."
+                },
+                "country": {
+                    "type": "string",
+                    "description": "ISO 3166-1 country code or name."
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Sub-national region or state."
+                }
+            }
+        },
+        "Agent": {
+            "type": "object",
+            "description": "An agent who may generate events.",
+            "required": ["id", "species"],
+            "additionalProperties": true,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Provenance-scoped agent id."
+                },
+                "species": {
+                    "type": "string",
+                    "description": "Species name in binomial nomenclature."
+                },
+                "metadata": {
+                    "type": "object",
+                    "description": "Optional metadata (breed, age, sex, name, training_method, etc.).",
+                    "additionalProperties": true
+                },
+                "group_id": {
+                    "type": "string",
+                    "description": "Optional group identifier for multi-agent scenarios."
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Optional role (e.g., learner, teacher, observer)."
+                },
+                "communication_profile": {
+                    "type": "object",
+                    "description": "Communication capabilities and sensory ranges for this agent.",
+                    "additionalProperties": true,
+                    "properties": {
+                        "hearing_range_hz": {
+                            "type": "array",
+                            "description": "Hearing range as [min, max] in Hz.",
+                            "items": { "type": "number" },
+                            "minItems": 2,
+                            "maxItems": 2
+                        },
+                        "vocalization_range_hz": {
+                            "type": "array",
+                            "description": "Vocalization range as [min, max] in Hz.",
+                            "items": { "type": "number" },
+                            "minItems": 2,
+                            "maxItems": 2
+                        },
+                        "primary_modalities": {
+                            "type": "array",
+                            "description": "Primary communication modalities (e.g., acoustic, ultrasonic, visual, chemical).",
+                            "items": { "type": "string" }
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "Free-text description of communication capabilities."
+                        }
+                    }
+                }
+            }
+        },
+        "AgentRef": {
+            "description": "Agent id (string) or object with agent id plus additional properties.",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "Agent id."
+                },
+                {
+                    "type": "object",
+                    "description": "Agent reference with optional details.",
+                    "required": ["agent"],
+                    "additionalProperties": true,
+                    "properties": {
+                        "agent": {
+                            "type": "string",
+                            "description": "Agent id."
+                        }
+                    }
+                }
+            ]
+        },
+        "Measurement": {
+            "type": "object",
+            "description": "A single measured dimension with value, unit, and optional method.",
+            "required": ["dimension", "value"],
+            "additionalProperties": true,
+            "properties": {
+                "dimension": {
+                    "type": "string",
+                    "description": "What is being measured (e.g., freq_min_hz, waggle_angle_deg, body_length_cm)."
+                },
+                "value": {
+                    "type": "number",
+                    "description": "Numeric value of the measurement."
+                },
+                "unit": {
+                    "type": "string",
+                    "description": "Unit of measurement (e.g., Hz, deg, ms, m)."
+                },
+                "method": {
+                    "type": "string",
+                    "description": "How the measurement was obtained (e.g., spectrogram, accelerometer, manual)."
+                },
+                "note": {
+                    "type": "string",
+                    "description": "Free-text note about this measurement."
+                }
+            }
+        },
+        "Spatial": {
+            "type": "object",
+            "description": "Spatial position and trajectory data.",
+            "additionalProperties": true,
+            "properties": {
+                "reference_frame": {
+                    "type": "string",
+                    "description": "Coordinate reference frame (e.g., hive_entrance, arena_top_left, WGS84)."
+                },
+                "coordinates": {
+                    "type": "array",
+                    "description": "Position as [x, y] or [x, y, z] in the reference frame.",
+                    "items": { "type": "number" }
+                },
+                "unit": {
+                    "type": "string",
+                    "description": "Unit for coordinates (e.g., cm, m, deg)."
+                },
+                "trajectory": {
+                    "type": "array",
+                    "description": "Time-series of positions.",
+                    "items": {
+                        "type": "object",
+                        "required": ["t_ms", "coordinates"],
+                        "properties": {
+                            "t_ms": {
+                                "type": "number",
+                                "description": "Time offset in milliseconds from event start."
+                            },
+                            "coordinates": {
+                                "type": "array",
+                                "description": "Position at this time.",
+                                "items": { "type": "number" }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Event": {
+            "type": "object",
+            "description": "An extendable event representing an occurrence in time.",
+            "required": ["id", "type", "start"],
+            "additionalProperties": true,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "File-scoped event id."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Event type (e.g., button_press, vocalization, utterance)."
+                },
+                "agent": {
+                    "type": "string",
+                    "description": "Agent id who produced this event."
+                },
+                "present": {
+                    "type": "array",
+                    "description": "Agents co-present when this event occurred. Defaults to all agents in eventstream.",
+                    "items": { "$ref": "#/$defs/AgentRef" }
+                },
+                "start": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Start of the event (ISO 8601)."
+                },
+                "end": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "End of the event (ISO 8601)."
+                },
+                "content": {
+                    "type": "string",
+                    "description": "Event content (e.g., button label, transcript)."
+                },
+                "other_data": {
+                    "type": "object",
+                    "description": "Extendable object for additional event data.",
+                    "additionalProperties": true
+                },
+                "context": {
+                    "type": "object",
+                    "description": "Environmental context data.",
+                    "additionalProperties": true
+                },
+                "confidence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Confidence score for automated/inferred events."
+                },
+                "media_refs": {
+                    "type": "array",
+                    "description": "References to linked media recordings.",
+                    "items": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                },
+                "annotations": {
+                    "type": "array",
+                    "description": "Researcher-added metadata annotations.",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "duration_ms": {
+                    "type": "number",
+                    "description": "Duration in milliseconds. Supports sub-millisecond precision for fast signals like bat echolocation."
+                },
+                "parent_id": {
+                    "type": "string",
+                    "description": "Parent event id for hierarchical events (e.g., song > theme > phrase > unit)."
+                },
+                "measurements": {
+                    "type": "array",
+                    "description": "Modality-agnostic measurements associated with this event.",
+                    "items": { "$ref": "#/$defs/Measurement" }
+                },
+                "source": {
+                    "type": "object",
+                    "description": "Source metadata linking the event to raw sensor data.",
+                    "additionalProperties": true,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Source type (e.g., audio, video, accelerometer, manual)."
+                        },
+                        "sensor": {
+                            "type": "string",
+                            "description": "Sensor or device name (e.g., hydrophone, overhead_camera, piezo)."
+                        },
+                        "channel": {
+                            "type": "integer",
+                            "description": "Channel number in multi-channel recording."
+                        },
+                        "sample_rate_hz": {
+                            "type": "number",
+                            "description": "Sample rate in Hz."
+                        },
+                        "fps": {
+                            "type": "number",
+                            "description": "Frames per second for video sources."
+                        },
+                        "file": {
+                            "type": "string",
+                            "description": "Filename or path to raw recording."
+                        },
+                        "offset_samples": {
+                            "type": "integer",
+                            "description": "Offset in samples from start of recording file."
+                        },
+                        "offset_ms": {
+                            "type": "number",
+                            "description": "Offset in milliseconds from start of recording file."
+                        },
+                        "format": {
+                            "type": "string",
+                            "description": "File format (e.g., wav, flac, mp4)."
+                        }
+                    }
+                },
+                "location": {
+                    "$ref": "#/$defs/Location",
+                    "description": "Geographic location for this event (for mobile data collection)."
+                },
+                "spatial": {
+                    "$ref": "#/$defs/Spatial"
+                },
+                "classification": {
+                    "type": "object",
+                    "description": "Automated or manual classification of the event.",
+                    "additionalProperties": true,
+                    "properties": {
+                        "method": {
+                            "type": "string",
+                            "description": "Classification method (e.g., manual, cnn, template_matching)."
+                        },
+                        "label": {
+                            "type": "string",
+                            "description": "Classification label."
+                        },
+                        "confidence": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                            "description": "Classification confidence score (0-1)."
+                        },
+                        "model_version": {
+                            "type": "string",
+                            "description": "Version of the classification model."
+                        },
+                        "taxonomy": {
+                            "type": "string",
+                            "description": "Reference to the classification taxonomy used."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
