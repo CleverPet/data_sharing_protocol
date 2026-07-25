@@ -1,0 +1,79 @@
+{
+    "id": "cleverpet.200",
+    "provenance": "cleverpet",
+    "start": "2021-11-21T18:30:35.911000",
+    "end": "2021-11-21T18:31:10.000000",
+    "agents": [
+        {
+            "id": "cleverpet.dog.200",
+            "species": "canis familiaris"
+        },
+        {
+            "id": "cleverpet.human.200",
+            "species": "homo sapiens"
+        },
+        {
+            "id": "cleverpet.human.201",
+            "species": "homo sapiens"
+        }
+    ],
+    "events": [
+        {
+            "id": "cleverpet.200.0",
+            "type": "button_press",
+            "agent": "cleverpet.dog.200",
+            "present": [
+                "cleverpet.dog.200",
+                "cleverpet.human.200"
+            ],
+            "start": "2021-11-21T18:30:40.000000",
+            "end": "2021-11-21T18:30:40.500000",
+            "content": "OUTSIDE"
+        },
+        {
+            "id": "cleverpet.200.1",
+            "type": "utterance",
+            "agent": "cleverpet.human.200",
+            "present": [
+                "cleverpet.dog.200",
+                {
+                    "agent": "cleverpet.human.200",
+                    "attention": "dog",
+                    "distance_m": 1
+                }
+            ],
+            "start": "2021-11-21T18:30:42.000000",
+            "end": "2021-11-21T18:30:43.200000",
+            "content": "You want to go outside?"
+        },
+        {
+            "id": "cleverpet.200.2",
+            "type": "button_press",
+            "agent": "cleverpet.dog.200",
+            "present": [
+                "cleverpet.dog.200",
+                {
+                    "agent": "cleverpet.human.200",
+                    "attention": "dog",
+                    "distance_m": 1
+                },
+                {
+                    "agent": "cleverpet.human.201",
+                    "attention": "elsewhere",
+                    "distance_m": 4
+                }
+            ],
+            "start": "2021-11-21T18:30:55.000000",
+            "end": "2021-11-21T18:30:55.500000",
+            "content": "OUTSIDE"
+        },
+        {
+            "id": "cleverpet.200.3",
+            "type": "vocalization",
+            "agent": "cleverpet.dog.200",
+            "start": "2021-11-21T18:31:05.000000",
+            "end": "2021-11-21T18:31:06.000000",
+            "content": "<BARK>"
+        }
+    ]
+}
